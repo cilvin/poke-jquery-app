@@ -4,6 +4,7 @@ var pokemonRepository = (function () {
     var repository = [];
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
     var $container = $('#modal-container');
+    var $Ulcontainer = $('.ul-container');
 
     // Loading Data from an external api
     function loadList() {
@@ -25,19 +26,20 @@ var pokemonRepository = (function () {
 
      function addListItem(pokemon) {
          console.log('addListItem', pokemon)
+        
         var $Ul = $('<ul class= "ul-container"></ul>');
         var $Li = $('<li type="button"></li>');
         var $button = $('<button type="button">' + pokemon.name + '</button>');
 
         $Li.append($button);
         $Ul.append($Li);
+        $Ulcontainer.append($Li);
 
         $button.on('click', function (e) {
             console.log('showDetails', e)
-            showDetails(pokemon);
-           
-          
+            showDetails(pokemon); 
         });
+        
        
      }
 
@@ -72,16 +74,16 @@ var pokemonRepository = (function () {
      function showModal(item) {
          console.log('shwModal',item)
       
-         var $container = $('#modal-container');
+     
 
          $container.empty();
 
          var $modal = $('<div class="modal"></div>');
          
 
-         var $closeButton = ('<button class="modal-close">Close</div>');
+         var $closeButton = $('<button class="modal-close">Close</button>');
 
-         $('button').on('click', hideModal);
+         $('.modal-close').on('click', hideModal);
 
          var $name = $('<h1>' + item.name + '</h1>');
 
@@ -89,7 +91,7 @@ var pokemonRepository = (function () {
 
          var $height = $('<p> height: ' + item.height + '</p>');
 
-         var $weight = ('<p> weight: ' + item.weight + '</p>');
+         var $weight = $('<p> weight: ' + item.weight + '</p>');
 
          $modal.append($closeButton);
          $modal.append($name);
@@ -99,31 +101,28 @@ var pokemonRepository = (function () {
          $container.append($modal);
 
          $container.addClass('is-visible');
-        
+
          
      }
 
-    function hideModal(bye) {
-    
-        
+    function hideModal() {
         $container.removeClass('is-visible');
     }
 
-        window.addEventListener('keydown', (e) => { 
+    window.addEventListener('keydown', (e) => { 
         
 
-        if (
-            e.key === 'Escape' && $container.hasClass('is-visible')) {
+        if (e.key === 'Escape' && $container.hasClass('is-visible')) {
                 hideModal();
             }
         
     });
 
     
-        $container.on('click', e => {
-            var target = e.target;
-            if (target === $container) {
-            hideModal();
+    $container.on('click', function (event) {
+                
+        if ($(event.target).is($container)) {
+                 hideModal();
         }
     });
 
