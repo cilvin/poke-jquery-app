@@ -65,6 +65,7 @@ var pokemonRepository = (function () {
              item.imageUrl = response.sprites.front_default;
              item.height = response.height;
              item.weight = response.weight;
+             
          }).catch(function (e) {
              console.error(e);
          });
@@ -83,7 +84,8 @@ var pokemonRepository = (function () {
 
          var $closeButton = $('<button class="modal-close">Close</button>');
 
-         $('.modal-close').on('click', hideModal);
+         
+        
 
          var $name = $('<h1>' + item.name + '</h1>');
 
@@ -101,6 +103,8 @@ var pokemonRepository = (function () {
          $container.append($modal);
 
          $container.addClass('is-visible');
+
+         $closeButton.on('click', hideModal);
 
          
      }
