@@ -3,8 +3,8 @@ var pokemonRepository = (function () {
 
     var repository = [];
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
-    var $container = $('#modal-container');
-    var $Ulcontainer = $('.ul-container');
+    var $container = $('#exampleModal');
+    var $Ulcontainer = $('.list-group');
 
     // Loading Data from an external api
     function loadList() {
@@ -27,18 +27,18 @@ var pokemonRepository = (function () {
      function addListItem(pokemon) {
          console.log('addListItem', pokemon)
         
-        var $Ul = $('<ul class= "ul-container"></ul>');
-        var $Li = $('<li type="button"></li>');
-        var $button = $('<button type="button">' + pokemon.name + '</button>');
+        
+        var $Li = $('.btn-group-vertical');
+        var $button = $('.btn');
+        $button.text(pokemon.name);
 
         $Li.append($button);
-        $Ul.append($Li);
-        $Ulcontainer.append($Li);
+        
+        
 
-        $button.on('click', function (e) {
-            console.log('showDetails', e)
-            showDetails(pokemon); 
-        });
+      
+         showDetails(pokemon); 
+       
         
        
      }
