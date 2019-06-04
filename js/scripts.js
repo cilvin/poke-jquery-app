@@ -4,7 +4,7 @@ var pokemonRepository = (function () {
     var repository = [];
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
     var $container = $('#exampleModal');
-    var $Ulcontainer = $('.list-group');
+    
 
     // Loading Data from an external api
     function loadList() {
@@ -29,10 +29,42 @@ var pokemonRepository = (function () {
         
         
         var $Li = $('.btn-group-vertical');
-        var $button = $('.btn');
-        $button.text(pokemon.name);
+        var $modalContainer = $('#exampleModal');
 
+        var $button = $(`<button
+                         type="button"
+                         data-toggle="modal"
+                         data-target="#exampleModal"
+                         class="btn btn-primary"
+                         >${pokemon.name}</button>`);
+
+        var $modal = $(`<div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">${pokemon.name}
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
+                                    </span></button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>`);
+       
+        
+
+        $modalContainer.append($modal);
+        
+
+                
+        
         $Li.append($button);
+
         
         
 
