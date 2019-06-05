@@ -29,7 +29,7 @@ var pokemonRepository = (function () {
         
         
         var $Li = $('.btn-group-vertical');
-        var $modalContainer = $('#exampleModal');
+        
 
         var $button = $(`<button
                          type="button"
@@ -38,48 +38,38 @@ var pokemonRepository = (function () {
                          class="btn btn-primary"
                          >${pokemon.name}</button>`);
 
-        var $modal = $(`<div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">${pokemon.name}
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;
-                                    </span></button>
-                                </div>
-                                <div class="modal-body">
-                                
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save Changes</button>
-                                </div>
-                            </div>
-                        </div>`);
-       
-        
-
-        $modalContainer.append($modal);
-        
-
+        var $modal = $(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">${pokemon.name}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
                 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>`);
+       
         
         $Li.append($button);
 
-        
-        
-
-      
-         showDetails(pokemon); 
-       
+        $Li.append($modal);
         
        
      }
 
      function showDetails(item) {
          console.log('shw', item)
-         pokemonRepository.loadDetails(item).then(function () {
-            showModal(item);
-         });
+         pokemonRepository.loadDetails(item);
+         
      }
 
      function add(item) {
@@ -103,65 +93,7 @@ var pokemonRepository = (function () {
          });
      }
 
-     //creating modal content
-     function showModal(item) {
-         console.log('shwModal',item)
-      
      
-
-         $container.empty();
-
-         var $modal = $('<div class="modal"></div>');
-         
-
-         var $closeButton = $('<button class="modal-close">Close</button>');
-
-         
-        
-
-         var $name = $('<h1>' + item.name + '</h1>');
-
-         var $img = $('<img class="modal-img" src=' + item.imageUrl +  '</img>');
-
-         var $height = $('<p> height: ' + item.height + '</p>');
-
-         var $weight = $('<p> weight: ' + item.weight + '</p>');
-
-         $modal.append($closeButton);
-         $modal.append($name);
-         $modal.append($img);
-         $modal.append($height);
-         $modal.append($weight);
-         $container.append($modal);
-
-         $container.addClass('is-visible');
-
-         $closeButton.on('click', hideModal);
-
-         
-     }
-
-    function hideModal() {
-        $container.removeClass('is-visible');
-    }
-
-    window.addEventListener('keydown', (e) => { 
-        
-
-        if (e.key === 'Escape' && $container.hasClass('is-visible')) {
-                hideModal();
-            }
-        
-    });
-
-    
-    $container.on('click', function (event) {
-                
-        if ($(event.target).is($container)) {
-                 hideModal();
-        }
-    });
-
    
   return {
     getAll: getAll,
@@ -170,8 +102,8 @@ var pokemonRepository = (function () {
     showDetails: showDetails,
     loadList: loadList,
     loadDetails: loadDetails,
-    showModal: showModal,
-    hideModal: hideModal
+    
+    
     
 };
 
