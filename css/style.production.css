@@ -1,0 +1,30 @@
+/*
+Colors used
+
+Text-color (dark gray): #21222D
+background-color (light gray): #B0B0B2
+
+*/
+:root {
+    --primary-color: #357b70;
+    --primary-color-darker: #16342f;
+    --primary-color-lighter: #5db9ab;
+    --secondary-color: #e0b354;
+    --third-color: #2b2b2b;
+    --fourth-color: #21222D;
+    --fith-color: #05676e;
+    --sixth-color: #489c79;
+    --seventh-color: #D3D3D3;
+    --eigth-color: #ffffff;
+    --ninth-color: #edc655;
+    --tenth-color: #f76414;
+    --primary-font-weight: 700;
+    --normal-padding: 10px;
+  }
+  
+  body {
+    background-image: -webkit-gradient(linear, left top, right top, from(lightblue), to(white));
+    background-image: -webkit-linear-gradient(left, lightblue, white);
+    background-image: -o-linear-gradient(left, lightblue, white);
+    background-image: linear-gradient(to right, lightblue, white);
+  }
