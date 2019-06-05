@@ -3,7 +3,7 @@ var pokemonRepository = (function () {
 
     var repository = [];
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
-    var $container = $('#exampleModal');
+   
     
 
     // Loading Data from an external api
