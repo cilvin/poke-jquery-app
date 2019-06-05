@@ -48,7 +48,8 @@ var pokemonRepository = (function () {
               </button>
             </div>
             <div class="modal-body">
-                
+                ${pokemon.height}
+                ${pokemon.weight}
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
