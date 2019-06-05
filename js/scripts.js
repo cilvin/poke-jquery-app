@@ -38,6 +38,8 @@ var pokemonRepository = (function () {
                          class="btn btn-primary"
                          >${pokemon.name}</button>`);
 
+                                
+
         var $modal = $(`<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -63,7 +65,18 @@ var pokemonRepository = (function () {
         $Li.append($button);
 
         $Li.append($modal);
+
+          $('#exampleModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + recipient)
+            modal.find('.modal-body input').val(recipient)
+                          })    
         
+       
        
      }
 
