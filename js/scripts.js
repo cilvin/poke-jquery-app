@@ -134,13 +134,4 @@ pokemonRepository.loadList().then(function(pokeArray) {
             console.log('clicked');
             pokemonRepository.updateModal(findPokemon);
         }
-    });
-});
-
-
-
-   
-
-
-
-
+    });});
